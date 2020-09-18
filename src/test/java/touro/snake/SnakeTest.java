@@ -140,4 +140,19 @@ public class SnakeTest {
         //then
         assertFalse(snake.inBounds());
     }
+
+    @Test
+    public void getScore(){
+        //check that getScore method works which will verify that score updates every time snake grows
+
+        //given
+        SnakeHeadStateMachine snakeHeadStateMachine = mock(SnakeHeadStateMachine.class);
+        Snake snake = new Snake(snakeHeadStateMachine);
+
+        //when
+        snake.grow();
+
+        //then
+        assertEquals(1, snake.getScore());
+    }
 }

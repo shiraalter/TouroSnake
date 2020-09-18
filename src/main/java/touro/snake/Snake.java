@@ -10,6 +10,10 @@ import static touro.snake.Direction.*;
  */
 public class Snake {
 
+    //NEW STUFF:
+    private int scoreCounter = 0;
+
+
     private static final int START_LENGTH = 6;
 
     private final List<Square> squares = new ArrayList<>();
@@ -17,6 +21,7 @@ public class Snake {
     private final SnakeHeadStateMachine snakeHeadStateMachine;
 
     private boolean grow = false;
+
 
     public Snake(SnakeHeadStateMachine snakeHeadStateMachine) {
         this.snakeHeadStateMachine = snakeHeadStateMachine;
@@ -43,6 +48,8 @@ public class Snake {
      */
     public void grow() {
         setGrow(true);
+
+        scoreCounter+=1;                             //if eats food and grows, add to score
     }
 
     public void turnTo(Direction newDirection) {
@@ -139,5 +146,10 @@ public class Snake {
 
     public void setGrow(boolean grow) {
         this.grow = grow;
+    }
+
+    //NEW METHOD
+    public int getScore(){
+        return scoreCounter;
     }
 }
