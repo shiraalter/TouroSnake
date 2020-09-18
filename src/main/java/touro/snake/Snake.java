@@ -10,9 +10,8 @@ import static touro.snake.Direction.*;
  */
 public class Snake {
 
-    //NEW STUFF:
+    //counter to keep track of score
     private int scoreCounter = 0;
-
 
     private static final int START_LENGTH = 6;
 
@@ -49,7 +48,7 @@ public class Snake {
     public void grow() {
         setGrow(true);
 
-        scoreCounter+=1;                             //if eats food and grows, add to score
+        scoreCounter+=1;           //if eats food and grows, add to score
     }
 
     public void turnTo(Direction newDirection) {

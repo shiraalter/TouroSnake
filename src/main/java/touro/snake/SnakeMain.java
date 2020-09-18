@@ -18,7 +18,7 @@ public class SnakeMain {
         GardenThread thread = new GardenThread(garden, gardenView);
         thread.start();
 
-        new SnakeFrame(gardenView, snakeKeyListener, snake).setVisible(true);       //ADDED SNAKE
+        new SnakeFrame(gardenView, snakeKeyListener, snake).setVisible(true);       //added snake as parameter
     }
 
 }
