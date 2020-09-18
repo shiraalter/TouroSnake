@@ -9,7 +9,7 @@ public class SnakeFrame extends JFrame {
 
     public JLabel scoreBoard;
 
-    public SnakeFrame(GardenView gardenView, SnakeKeyListener snakeKeyListener, Snake snake) throws HeadlessException {     //added snake as parameter
+    public SnakeFrame(GardenView gardenView, SnakeKeyListener snakeKeyListener, Snake snake) throws HeadlessException {
         super();
         setSize(1000, 400);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

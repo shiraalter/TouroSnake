@@ -9,8 +9,6 @@ import static touro.snake.Direction.*;
  * Model object that represents the Snake and allows it to grow, turn and move.
  */
 public class Snake {
-
-    //counter to keep track of score
     private int scoreCounter = 0;
 
     private static final int START_LENGTH = 6;
@@ -48,7 +46,7 @@ public class Snake {
     public void grow() {
         setGrow(true);
 
-        scoreCounter+=1;           //if eats food and grows, add to score
+        scoreCounter++; //if snake eats food, increment score
     }
 
     public void turnTo(Direction newDirection) {
@@ -147,7 +145,6 @@ public class Snake {
         this.grow = grow;
     }
 
-    //NEW METHOD
     public int getScore(){
         return scoreCounter;
     }

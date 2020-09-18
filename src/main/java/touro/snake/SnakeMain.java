@@ -7,7 +7,6 @@ public class SnakeMain {
     public static void main(String[] args) {
 
         // Set up all class dependencies here.
-
         SnakeHeadStateMachine snakeHeadStateMachine = new SnakeHeadStateMachine(Direction.West);
         Snake snake = new Snake(snakeHeadStateMachine);
         FoodFactory foodFactory = new FoodFactory();
@@ -18,7 +17,7 @@ public class SnakeMain {
         GardenThread thread = new GardenThread(garden, gardenView);
         thread.start();
 
-        new SnakeFrame(gardenView, snakeKeyListener, snake).setVisible(true);       //added snake as parameter
+        new SnakeFrame(gardenView, snakeKeyListener, snake).setVisible(true);
     }
 
 }
