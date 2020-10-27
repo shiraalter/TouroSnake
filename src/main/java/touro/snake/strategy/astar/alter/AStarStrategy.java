@@ -38,7 +38,7 @@ public class AStarStrategy implements SnakeStrategy {
             closedList.add(currentNode);
 
             if (currentNode.getX() == targetNode.getX() && currentNode.getY() == targetNode.getY()) {     //found path!
-                direction = tracePath(direction, currentNode, startNode);
+                direction = tracePath(currentNode, startNode);
                 snake.turnTo(direction);
             }
         }
@@ -69,24 +69,14 @@ public class AStarStrategy implements SnakeStrategy {
         return currentNode;
     }
 
-    private Direction tracePath(Direction direction, Node currentNode, Node startNode) {
-        int startNodeX = startNode.getX();
-        int startNodeY = startNode.getY();
+    private Direction tracePath ( Node currentNode, Node startNode) {
 
         while (currentNode != startNode) {    //loop back but stop before it reaches the head
             currentNode = currentNode.getParent();
 
         }
-        if (currentNode.getX() == startNodeX && currentNode.getY() == startNodeY - 1) {
-            direction = Direction.North;
-        } else if (currentNode.getX() == startNodeX && currentNode.getY() == startNodeY + 1) {
-            direction = Direction.South;
-        } else if (currentNode.getX() == (startNodeX + 1) && currentNode.getY() == startNodeY) {
-            direction = Direction.East;
-        } else if (currentNode.getX() == (startNodeX - 1) && currentNode.getY() == startNodeY) {
-            direction = Direction.West;
-        }
-        return direction;
+        return startNode.directionTo(currentNode);
+
     }
 }
 
