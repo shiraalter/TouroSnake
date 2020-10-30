@@ -33,6 +33,7 @@ public class GardenView extends JComponent {
         }
     }
 
+
     void paintFood(Graphics g) {
         // Berger
         if (garden.getFood() != null) {
@@ -44,4 +45,6 @@ public class GardenView extends JComponent {
             g.fillRect(x, y, CELL_SIZE, CELL_SIZE);
         }
     }
+
+
 }
