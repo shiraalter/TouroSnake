@@ -40,7 +40,7 @@ public class AStarStrategy implements SnakeStrategy {
                 snake.turnTo(direction);
                 break;
             }
-          
+
 
             //if target NOT found yet:
             for (Direction directions : directionArray) {
@@ -50,7 +50,7 @@ public class AStarStrategy implements SnakeStrategy {
                 }
 
                int index = openList.indexOf(adjacentNode);
-                if (index != -1) {
+                if (index != -1) {  //check if index already exists in open list
                     Node oldAdjacent = openList.get(index);
                     if (adjacentNode.getCost() < oldAdjacent.getCost()) {
                         openList.remove(index);
