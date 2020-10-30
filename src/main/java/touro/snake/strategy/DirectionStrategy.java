@@ -2,6 +2,11 @@ package touro.snake.strategy;
 
 import touro.snake.*;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
 public class DirectionStrategy implements SnakeStrategy {
 
 
@@ -17,20 +22,29 @@ public class DirectionStrategy implements SnakeStrategy {
         double shortestDistance = Double.MAX_VALUE;
 
         //loop through directions and get neighbor square, calc distance from neighbor to food, if that distance is better than what we have, save that direction
-        for(Direction d : directions){
+        for (Direction d : directions) {
             Square neighbor = head.moveTo(d);
             double distanceToFood = neighbor.distance(food);
 
-            if(snake.contains(neighbor) || !neighbor.inBounds()){
+            if (snake.contains(neighbor) || !neighbor.inBounds()) {
                 continue;
             }
-            if(distanceToFood < shortestDistance){
+            if (distanceToFood < shortestDistance) {
                 bestDirection = d;
                 shortestDistance = distanceToFood;
             }
         }
 
         snake.turnTo(bestDirection);
+    }
+    @Override
+    public List<Square> getPath() {
+        return Collections.emptyList();
+    }
+
+    @Override
+    public List<Square> getSearchSpace() {
+        return Collections.emptyList();
 
     }
 }
