@@ -1,20 +1,23 @@
 package touro.snake.strategy.astar.alter;
 
-import touro.snake.Direction;
-import touro.snake.Food;
-import touro.snake.Garden;
-import touro.snake.Snake;
+import touro.snake.*;
 import touro.snake.strategy.SnakeStrategy;
 import touro.snake.strategy.astar.Node;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 
 
 public class AStarStrategy implements SnakeStrategy {
 
+   private List<Square> pathList = new ArrayList<>();
+
     @Override
     public void turnSnake(Snake snake, Garden garden) {
+
+        pathList.clear();
+
         ArrayList<Node> openList = new ArrayList<>();
         ArrayList<Node> closedList = new ArrayList<>();
 
@@ -65,16 +68,29 @@ public class AStarStrategy implements SnakeStrategy {
 
         }
 
+    @Override
+    public List<Square> getPath() {
+        return pathList;
+    }
+
+    @Override
+    public List<Square> getSearchSpace() {
+        return null;
+    }
+
 
     private Node getLowestNode(ArrayList<Node> openList) {
         return openList.stream().min(Comparator.comparingDouble(Node::getCost)).get();
     }
 
     private Node tracePath(Node currentNode, Node startNode) {
+
         Node end = currentNode;
         while (!end.getParent().equals(startNode)) {    //loop back but stop before it reaches the head
             end = end.getParent();
+            pathList.add(end);
         }
+
         return end;
     }
 }
