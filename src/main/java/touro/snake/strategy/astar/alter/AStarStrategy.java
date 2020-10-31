@@ -12,11 +12,13 @@ import java.util.List;
 public class AStarStrategy implements SnakeStrategy {
 
    private List<Square> pathList = new ArrayList<>();
+   private List<Square> searchSpaceList = new ArrayList<>();
 
     @Override
     public void turnSnake(Snake snake, Garden garden) {
 
-        pathList.clear();
+        pathList.clear();    //clear previous path
+        searchSpaceList.clear();
 
         ArrayList<Node> openList = new ArrayList<>();
         ArrayList<Node> closedList = new ArrayList<>();
@@ -35,6 +37,9 @@ public class AStarStrategy implements SnakeStrategy {
             Node currentNode = getLowestNode(openList);
             openList.remove(currentNode);
             closedList.add(currentNode);
+
+            searchSpaceList.add(currentNode);
+
 
             //found target
             if (currentNode.equals(targetNode)) {
@@ -58,10 +63,14 @@ public class AStarStrategy implements SnakeStrategy {
                     if (adjacentNode.getCost() < oldAdjacent.getCost()) {
                         openList.remove(index);
                         openList.add(adjacentNode);
+
+                        searchSpaceList.add(adjacentNode);
                     }
                 }
                     else{
                         openList.add(adjacentNode);
+
+                        searchSpaceList.add(adjacentNode);
                     }
                 }
             }
@@ -75,7 +84,7 @@ public class AStarStrategy implements SnakeStrategy {
 
     @Override
     public List<Square> getSearchSpace() {
-        return null;
+        return searchSpaceList;
     }
 
 
