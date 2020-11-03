@@ -7,7 +7,9 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-
+/**
+ * Chooses a Direction based on which neighbor is closest to the Food.
+ */
 public class DirectionStrategy implements SnakeStrategy {
     @Override
     public void turnSnake(Snake snake, Garden garden) {
