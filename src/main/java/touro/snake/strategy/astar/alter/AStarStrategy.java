@@ -11,8 +11,8 @@ import java.util.List;
 
 public class AStarStrategy implements SnakeStrategy {
 
-   private List<Square> pathList = new ArrayList<>();
-   private List<Square> searchSpaceList = new ArrayList<>();
+    private List<Square> pathList = new ArrayList<>();
+    private List<Square> searchSpaceList = new ArrayList<>();
 
     @Override
     public void turnSnake(Snake snake, Garden garden) {
@@ -23,7 +23,7 @@ public class AStarStrategy implements SnakeStrategy {
         ArrayList<Node> openList = new ArrayList<>();
         ArrayList<Node> closedList = new ArrayList<>();
 
-        Direction[] directionArray = Direction.values();
+
         Node startNode = new Node(snake.getHead()); //get initial square
         Food targetNode = garden.getFood();
 
@@ -49,33 +49,39 @@ public class AStarStrategy implements SnakeStrategy {
                 break;
             }
 
+            searchAdjacentNodes(snake, openList, closedList, targetNode, currentNode);
 
-            //if target NOT found yet:
-            for (Direction directions : directionArray) {
-                Node adjacentNode = new Node(currentNode.moveTo(directions), currentNode, targetNode);
-                if (closedList.contains(adjacentNode) || !adjacentNode.inBounds() || snake.contains(adjacentNode)) {
-                    continue;   //skip to next neighbor
-                }
-
-               int index = openList.indexOf(adjacentNode);
-                if (index != -1) {  //check if index already exists in open list
-                    Node oldAdjacent = openList.get(index);
-                    if (adjacentNode.getCost() < oldAdjacent.getCost()) {
-                        openList.remove(index);
-                        openList.add(adjacentNode);
-
-                        searchSpaceList.add(adjacentNode);
-                    }
-                }
-                    else{
-                        openList.add(adjacentNode);
-
-                        searchSpaceList.add(adjacentNode);
-                    }
-                }
-            }
 
         }
+
+    }
+
+    private void searchAdjacentNodes(Snake snake, ArrayList<Node> openList, ArrayList<Node> closedList, Food targetNode, Node currentNode) {
+
+        Direction[] directionArray = Direction.values();
+        //if target NOT found yet:
+        for (Direction directions : directionArray) {
+            Node adjacentNode = new Node(currentNode.moveTo(directions), currentNode, targetNode);
+            if (closedList.contains(adjacentNode) || !adjacentNode.inBounds() || snake.contains(adjacentNode)) {
+                continue;   //skip to next neighbor
+            }
+
+            int index = openList.indexOf(adjacentNode);
+            if (index != -1) {  //check if index already exists in open list
+                Node oldAdjacent = openList.get(index);
+                if (adjacentNode.getCost() < oldAdjacent.getCost()) {
+                    openList.remove(index);
+                    openList.add(adjacentNode);
+
+                    searchSpaceList.add(adjacentNode);
+                }
+            } else {
+                openList.add(adjacentNode);
+
+                searchSpaceList.add(adjacentNode);
+            }
+        }
+    }
 
     @Override
     public List<Square> getPath() {
