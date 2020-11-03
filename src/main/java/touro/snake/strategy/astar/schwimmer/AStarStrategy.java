@@ -63,8 +63,7 @@ public class AStarStrategy implements SnakeStrategy {
     }
 
     @Override
-    public List<Square> getPath()
-    {
+    public List<Square> getPath() {
         return Collections.emptyList();
     }
 
