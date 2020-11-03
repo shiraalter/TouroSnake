@@ -3,6 +3,7 @@ package touro.snake.strategy;
 import touro.snake.Garden;
 import touro.snake.Snake;
 import touro.snake.Square;
+import touro.snake.strategy.astar.Node;
 
 import java.util.List;
 
