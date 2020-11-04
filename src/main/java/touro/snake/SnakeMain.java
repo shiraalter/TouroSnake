@@ -26,7 +26,7 @@ public class SnakeMain {
             Clip clip = AudioSystem.getClip();
             clip.open(audioIn);
             Garden garden = new Garden(snake, foodFactory, clip);
-            GardenView gardenView = new GardenView(garden, aStarStrategy);
+            GardenView gardenView = new GardenView(garden);
             SnakeKeyListener snakeKeyListener = new SnakeKeyListener(snake);
 
             GardenThread thread = new GardenThread(garden, gardenView);
